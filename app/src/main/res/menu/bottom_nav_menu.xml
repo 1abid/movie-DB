@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_movie"
+        android:title="@string/menuMovie"
+        android:icon="@drawable/ic_cinema_black"
+        />
+
+    <item
+        android:id="@+id/menu_tv"
+        android:title="@string/menuTvShow"
+        android:icon="@drawable/ic_television_black"
+        />
+
+    <item
+        android:id="@+id/menu_search"
+        android:title="@string/menuSearch"
+        android:icon="@drawable/ic_search_black" />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/menuProfile"
+        android:icon="@drawable/ic_user_3" />
+</menu>

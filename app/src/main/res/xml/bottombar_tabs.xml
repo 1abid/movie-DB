@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/menu_movie"
+        title="@string/menuMovie"
+        icon="@drawable/ic_cinema_black"
+        inActiveColor="@color/secondary_text"
+        activeColor="@color/icons"
+        barColorWhenSelected="@color/color_nav_item_four"/>
+
+    <tab
+        id="@+id/menu_tv"
+        title="@string/menuTvShow"
+        icon="@drawable/ic_television_black"
+        inActiveColor="@color/secondary_text"
+        activeColor="@color/icons"
+        barColorWhenSelected="@color/color_nav_item_four"/>
+
+    <tab
+        id="@+id/menu_search"
+        title="@string/menuSearch"
+        icon="@drawable/ic_search_black"
+        inActiveColor="@color/secondary_text"
+        activeColor="@color/icons"
+        barColorWhenSelected="@color/color_nav_item_four"/>
+
+    <tab
+        id="@+id/menu_profile"
+        title="@string/menuProfile"
+        icon="@drawable/ic_user_3"
+        inActiveColor="@color/secondary_text"
+        activeColor="@color/icons"
+        barColorWhenSelected="@color/color_nav_item_four"/>
+</tabs>

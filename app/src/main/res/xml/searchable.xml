@@ -1,0 +1,7 @@
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/app_name"
+    android:label="@string/app_name"
+    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
+    android:searchSuggestAuthority="retrofit.github.bilai.vutka.com.retrofitdemo.rest.userSuggestions"
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
+    android:searchSuggestIntentData="content://retrofit.github.bilai.vutka.com.retrofitdemo.rest.userSuggestions"/>

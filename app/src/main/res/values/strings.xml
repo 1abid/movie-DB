@@ -1,0 +1,38 @@
+<resources>
+  <string name="app_name">Movie DB</string>
+
+
+
+  //bottom tab navigation menu string
+  <string name="menuMovie">Movie</string>
+  <string name="menuTvShow">Tv series</string>
+  <string name="menuSearch">Search</string>
+  <string name="menuProfile">Profile</string>
+
+  //MISC
+  <string name="ok_Button">OK</string>
+
+  <string name="title_1">Cool card</string>
+  <string name="title_2">Ok card</string>
+  <string name="title_3">Bad card</string>
+  <string name="title_4">Ugly card</string>
+
+  <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+
+
+  //error msgs
+  <string name="no_userName">enter your TMDB user name</string>
+  <string name="wrong_pass_length">password length must be 4 to 10 alphanumeric characters</string>
+  <string name="log_failed">log in failed</string>
+  <string name="log_in_success">Successfully logged in</string>
+
+  //Loading
+  <string name="request_token">requesting token ....</string>
+  <string name="creat_access_token">creating access token ...</string>
+  <string name="setting_up">Setting Up ....</string>
+
+  //preferences
+  <string name="approved_access_token_key" translatable="false">isApproved</string>
+
+
+</resources>

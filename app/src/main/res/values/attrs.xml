@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="vutka_left_top_corner_radius" format="dimension" />
+        <attr name="vutka_right_top_corner_radius" format="dimension" />
+        <attr name="vutka_left_bottom_corner_radius" format="dimension" />
+        <attr name="vutka_right_bottom_corner_radius" format="dimension" />
+        <attr name="vutka_border_width" format="dimension" />
+        <attr name="vutka_border_color" format="color" />
+        <attr name="vutka_oval" format="boolean" />
+        <attr name="android:scaleType" />
+    </declare-styleable>
+
+</resources>
