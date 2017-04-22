@@ -22,4 +22,19 @@ public class PreferenceUtils {
 
     preferences.edit().putBoolean(context.getString(R.string.approved_access_token_key) , approval).apply();
   }
+
+
+  public static String getRequestToken(Context context){
+
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    return preferences.getString(context.getString(R.string.request_token_key),"");
+  }
+
+
+  public static void saveRequestToken(Context context , String requestToken){
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    preferences.edit().putString(context.getString(R.string.request_token_key) , requestToken).apply();
+  }
 }

@@ -39,8 +39,8 @@ public class SplashMVP {
     void onConfigurationChanged(RequiredViewOps view);
     void setView(RequiredViewOps view);
 
-    void CreateRequestToken();
-    void createAccessToken();
+    void createRequestToken();
+    void createAccessToken(String requestToekn);
 
 
   }
