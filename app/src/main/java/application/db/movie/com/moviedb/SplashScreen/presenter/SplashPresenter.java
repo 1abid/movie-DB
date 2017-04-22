@@ -10,6 +10,7 @@ import application.db.movie.com.moviedb.SplashScreen.SplashMVP;
 import application.db.movie.com.moviedb.SplashScreen.model.AccessTokenResponse;
 import application.db.movie.com.moviedb.SplashScreen.model.RequestTokenResponse;
 import application.db.movie.com.moviedb.application.RestService;
+import application.db.movie.com.moviedb.mainActivity.MainActivity;
 import application.db.movie.com.moviedb.rest.AllApiUrls;
 import application.db.movie.com.moviedb.rest.TMDBApiInterface;
 import application.db.movie.com.moviedb.utils.PreferenceUtils;
@@ -73,8 +74,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
 
   @Override public void createRequestToken() {
 
-    final TextView tv = (TextView) getView().getViewById(R.id.splash_tv);
-    tv.setText(R.string.request_token);
+    showUpdate(getActivityContext().getString(R.string.request_token));
 
     TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
 
@@ -105,13 +105,13 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
     });
   }
 
-  @Override public void createAccessToken(String requestToekn) {
-    final TextView tv = (TextView) getView().getViewById(R.id.splash_tv);
-    tv.setText(R.string.creat_access_token);
+  @Override public void createAccessToken(String requestToken) {
+
+    showUpdate(getActivityContext().getString(R.string.create_access_token));
 
     TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
 
-    AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(requestToekn);
+    AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(requestToken);
 
     Call<AccessTokenResponse> call = apiInterface.createAccessToken(
         AllApiUrls.TMDB_API_KEY,
@@ -126,7 +126,11 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
         if(response.isSuccessful()){
           Log.d(getClass().getSimpleName() ,"status "+ response.body().getStatusMsg());
 
-          tv.setText(response.body().getStatusMsg() + "access token"+response.body().getAccessToken());
+          showUpdate(getActivityContext().getString(R.string.saving_access_token));
+
+          PreferenceUtils.saveAccessToken(getActivityContext() , response.body().getAccessToken());
+
+          getView().goToNext(new Intent(getActivityContext() , MainActivity.class));
 
         }else {
           PreferenceUtils.setIsApproved(getActivityContext() , false);
@@ -180,7 +184,9 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
   }
 
   @Override public void showUpdate(String msg) {
+    final TextView tv = (TextView) getView().getViewById(R.id.splash_tv);
 
+    tv.setText(msg);
   }
 
   public SplashMVP.RequiredViewOps getView() throws NullPointerException{

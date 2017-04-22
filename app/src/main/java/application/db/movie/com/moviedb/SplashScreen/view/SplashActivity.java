@@ -14,6 +14,7 @@ import application.db.movie.com.moviedb.SplashScreen.SplashMVP;
 import application.db.movie.com.moviedb.SplashScreen.model.SplashModel;
 import application.db.movie.com.moviedb.SplashScreen.presenter.SplashPresenter;
 import application.db.movie.com.moviedb.common.ActivityFragmentStatemaintainer;
+import application.db.movie.com.moviedb.mainActivity.MainActivity;
 import application.db.movie.com.moviedb.utils.PreferenceUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,10 +40,15 @@ public class SplashActivity extends AppCompatActivity implements SplashMVP.Requi
     ButterKnife.bind(this);
 
 
+    if(!PreferenceUtils.getAccesToken(getActivityContext()).equals("")){
+      goToNext(new Intent(this , MainActivity.class));
+    }
+
   }
 
   @Override protected void onResume() {
     super.onResume();
+
 
     if(!PreferenceUtils.isApproved(getActivityContext()))
       mPresenter.createRequestToken();
@@ -64,6 +70,11 @@ public class SplashActivity extends AppCompatActivity implements SplashMVP.Requi
 
   @Override public View getViewById(int viewID) {
     return findViewById(viewID);
+  }
+
+  @Override public void goToNext(Intent intent) {
+    startActivity(intent);
+    finish();
   }
 
   /**

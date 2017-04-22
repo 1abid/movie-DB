@@ -24,6 +24,7 @@ public class SplashMVP {
 
     void loadWebView(Intent intent);
     View getViewById(int viewID);
+    void goToNext(Intent intent);
 
   }
 

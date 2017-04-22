@@ -37,4 +37,17 @@ public class PreferenceUtils {
 
     preferences.edit().putString(context.getString(R.string.request_token_key) , requestToken).apply();
   }
+
+
+  public static String getAccesToken(Context context){
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    return preferences.getString(context.getString(R.string.access_token_key),"");
+  }
+
+  public static void saveAccessToken(Context context , String accessToken){
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    preferences.edit().putString(context.getString(R.string.access_token_key) , accessToken).apply();
+  }
 }

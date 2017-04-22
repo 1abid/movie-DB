@@ -28,12 +28,13 @@
 
   //Loading
   <string name="request_token">requesting token ....</string>
-  <string name="creat_access_token">creating access token ...</string>
+  <string name="create_access_token">creating access token ...</string>
   <string name="setting_up">Setting Up ....</string>
+  <string name="saving_access_token">saving access token ....</string>
 
   //preferences
   <string name="approved_access_token_key" translatable="false">isApproved</string>
   <string name="request_token_key" translatable="false">tmdb_request_token</string>
-
+  <string name="access_token_key" translatable="false">access_token</string>
 
 </resources>
