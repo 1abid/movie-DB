@@ -105,6 +105,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
     });
   }
 
+
   @Override public void createAccessToken(String requestToken) {
 
     showUpdate(getActivityContext().getString(R.string.create_access_token));
@@ -112,6 +113,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
     TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
 
     AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(requestToken);
+
 
     Call<AccessTokenResponse> call = apiInterface.createAccessToken(
         AllApiUrls.TMDB_API_KEY,
@@ -125,6 +127,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
 
         if(response.isSuccessful()){
           Log.d(getClass().getSimpleName() ,"status "+ response.body().getStatusMsg());
+
 
           showUpdate(getActivityContext().getString(R.string.saving_access_token));
 
