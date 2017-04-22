@@ -10,7 +10,7 @@ import application.db.movie.com.moviedb.SplashScreen.SplashMVP;
 import application.db.movie.com.moviedb.SplashScreen.model.AccessTokenResponse;
 import application.db.movie.com.moviedb.SplashScreen.model.RequestTokenResponse;
 import application.db.movie.com.moviedb.application.RestService;
-import application.db.movie.com.moviedb.mainActivity.MainActivity;
+import application.db.movie.com.moviedb.mainActivity.view.MainActivity;
 import application.db.movie.com.moviedb.rest.AllApiUrls;
 import application.db.movie.com.moviedb.rest.TMDBApiInterface;
 import application.db.movie.com.moviedb.utils.PreferenceUtils;

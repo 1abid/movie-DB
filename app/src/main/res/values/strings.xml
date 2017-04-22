@@ -35,10 +35,6 @@
   //preferences
   <string name="approved_access_token_key" translatable="false">isApproved</string>
   <string name="request_token_key" translatable="false">tmdb_request_token</string>
-<<<<<<< HEAD
   <string name="access_token_key" translatable="false">access_token</string>
-=======
-
->>>>>>> 2fa6cefde3582041833f935ee3a73d18bae8fb0f
 
 </resources>
