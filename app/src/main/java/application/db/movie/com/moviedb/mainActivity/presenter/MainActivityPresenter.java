@@ -1,8 +1,12 @@
 package application.db.movie.com.moviedb.mainActivity.presenter;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import application.db.movie.com.moviedb.R;
 import application.db.movie.com.moviedb.SplashScreen.SplashMVP;
 import application.db.movie.com.moviedb.mainActivity.MainActivityMVP;
+import application.db.movie.com.moviedb.mainActivity.view.TabOneFragment;
 import java.lang.ref.WeakReference;
 
 /**
@@ -17,10 +21,11 @@ public class MainActivityPresenter implements MainActivityMVP.ProvidedPresenterO
 
   private MainActivityMVP.ProvidedModelOps mModel;
 
+  Fragment returnableFragment = null ;
+
   public MainActivityPresenter(MainActivityMVP.RequiredViewOps view) {
     this.mView = new WeakReference<MainActivityMVP.RequiredViewOps>(view);
   }
-
 
   /**
    * called by activity every time during
@@ -51,6 +56,33 @@ public class MainActivityPresenter implements MainActivityMVP.ProvidedPresenterO
 
   @Override public void setView(MainActivityMVP.RequiredViewOps view) {
     this.mView = new WeakReference<MainActivityMVP.RequiredViewOps>(view);
+  }
+
+  @Override public void selectFragment(int tabId) {
+
+
+      switch (tabId){
+
+        case R.id.menu_movie:
+          returnableFragment = new TabOneFragment();
+          break;
+
+        case R.id.menu_tv:
+
+          break;
+
+        case R.id.menu_search:
+
+          break;
+
+        case R.id.menu_profile:
+
+          break;
+      }
+
+    if (returnableFragment != null)
+      getView().setSelectedTab(returnableFragment);
+
   }
 
   @Override public Context getAppContext() {

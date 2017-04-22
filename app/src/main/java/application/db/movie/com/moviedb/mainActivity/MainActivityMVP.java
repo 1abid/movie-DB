@@ -2,6 +2,7 @@ package application.db.movie.com.moviedb.mainActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import application.db.movie.com.moviedb.SplashScreen.SplashMVP;
 
@@ -22,6 +23,7 @@ public class MainActivityMVP {
     Context getAppContext();
     Context getActivityContext();
 
+    void setSelectedTab(Fragment fragment);
 
   }
 
@@ -36,6 +38,8 @@ public class MainActivityMVP {
     void onDestroy(boolean isChangingConfigurations);
     void onConfigurationChanged(MainActivityMVP.RequiredViewOps view);
     void setView(MainActivityMVP.RequiredViewOps view);
+
+    void selectFragment(int tabId);
 
   }
 

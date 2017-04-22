@@ -20,17 +20,17 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
-import tmdb.retrofit.bilai.vutka.com.moviecollections.R;
+import application.db.movie.com.moviedb.R;
 
 /**
  * Created by VutkaBilai on 2/20/17.
  * mail : la4508@gmail.com
  */
 
-public class SelectableRoundedImageView extends ImageView {
+public class SelectableRoundedImageView extends AppCompatImageView {
 
     public static final String TAG = "RoundedImageView";
 
