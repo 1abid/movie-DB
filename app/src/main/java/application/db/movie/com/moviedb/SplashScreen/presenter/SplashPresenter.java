@@ -87,8 +87,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
           if(response.isSuccessful()){
             Log.d(getClass().getSimpleName() ,"Request Token "+ response.body().getRequestToekn());
 
-            //redirectUser(response);
-            createAccessToken();
+            redirectUser(response);
 
           }else {
             try {
@@ -106,13 +105,13 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
     });
   }
 
-  @Override public void createAccessToken() {
+  @Override public void createAccessToken(String requestToekn) {
     final TextView tv = (TextView) getView().getViewById(R.id.splash_tv);
     tv.setText(R.string.creat_access_token);
 
     TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
 
-    AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(AllApiUrls.AUTH_TOKEN);
+    AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(requestToekn);
 
     Call<AccessTokenResponse> call = apiInterface.createAccessToken(
         AllApiUrls.TMDB_API_KEY,
@@ -127,7 +126,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
         if(response.isSuccessful()){
           Log.d(getClass().getSimpleName() ,"status "+ response.body().getStatusMsg());
 
-          tv.setText(response.body().getStatusMsg());
+          tv.setText(response.body().getStatusMsg() + "access token"+response.body().getAccessToken());
 
         }else {
           try {
@@ -151,7 +150,9 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
         Uri.parse("https://www.themoviedb.org/auth/access?request_token="+response.body().getRequestToekn()));
 
     getView().loadWebView(browserIntent);
-    //PreferenceUtils.setIsApproved(getActivityContext() , true);
+    PreferenceUtils.setIsApproved(getActivityContext() , true);
+    PreferenceUtils.saveRequestToken(getActivityContext() , response.body().getRequestToekn());
+
   }
 
   @Override public Context getAppContext() {

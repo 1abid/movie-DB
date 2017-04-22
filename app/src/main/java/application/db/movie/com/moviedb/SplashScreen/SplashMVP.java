@@ -40,7 +40,7 @@ public class SplashMVP {
     void setView(RequiredViewOps view);
 
     void CreateRequestToken();
-    void createAccessToken();
+    void createAccessToken(String requestToekn);
 
 
   }

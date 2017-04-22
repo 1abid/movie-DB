@@ -45,11 +45,10 @@ public class SplashActivity extends AppCompatActivity implements SplashMVP.Requi
   @Override protected void onResume() {
     super.onResume();
 
-    /*if(PreferenceUtils.isApproved(getActivityContext()))
+    if(!PreferenceUtils.isApproved(getActivityContext()))
       mPresenter.CreateRequestToken();
     else
-      mPresenter.createAccessToken();*/
-    mPresenter.CreateRequestToken();
+      mPresenter.createAccessToken(PreferenceUtils.getRequestToken(getActivityContext()));
   }
 
   @Override public Context getAppContext() {
