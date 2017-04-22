@@ -3,7 +3,6 @@ package application.db.movie.com.moviedb.SplashScreen.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,7 +45,7 @@ public class SplashActivity extends AppCompatActivity implements SplashMVP.Requi
     super.onResume();
 
     if(!PreferenceUtils.isApproved(getActivityContext()))
-      mPresenter.CreateRequestToken();
+      mPresenter.createRequestToken();
     else
       mPresenter.createAccessToken(PreferenceUtils.getRequestToken(getActivityContext()));
   }

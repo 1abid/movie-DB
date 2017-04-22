@@ -71,7 +71,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
     mView = new WeakReference<SplashMVP.RequiredViewOps>(view);
   }
 
-  @Override public void CreateRequestToken() {
+  @Override public void createRequestToken() {
 
     final TextView tv = (TextView) getView().getViewById(R.id.splash_tv);
     tv.setText(R.string.request_token);
@@ -129,12 +129,11 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
           tv.setText(response.body().getStatusMsg() + "access token"+response.body().getAccessToken());
 
         }else {
-          try {
-            JSONObject jObjError = new JSONObject(response.errorBody().string());
-            Log.d("error msg", jObjError.getString("status_message"));
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
+          PreferenceUtils.setIsApproved(getActivityContext() , false);
+          PreferenceUtils.saveRequestToken(getActivityContext() , "");
+
+
+          createRequestToken();
         }
       }
 
@@ -150,6 +149,7 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
         Uri.parse("https://www.themoviedb.org/auth/access?request_token="+response.body().getRequestToekn()));
 
     getView().loadWebView(browserIntent);
+
     PreferenceUtils.setIsApproved(getActivityContext() , true);
     PreferenceUtils.saveRequestToken(getActivityContext() , response.body().getRequestToekn());
 
