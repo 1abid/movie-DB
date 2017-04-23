@@ -75,9 +75,7 @@ public class MainActivityPresenter implements MainActivityMVP.ProvidedPresenterO
 
           break;
 
-        case R.id.menu_profile:
 
-          break;
       }
 
     if (returnableFragment != null)
