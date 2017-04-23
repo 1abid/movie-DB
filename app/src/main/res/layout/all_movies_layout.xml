@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    >
 
   <android.support.v4.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      >
 
-    <application.db.movie.com.moviedb.views.MyAutoScrollViewPager
-        android:id="@+id/viewPager"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:layout_gravity="top"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingEnd="@dimen/card_padding"
-        android:paddingLeft="@dimen/card_padding"
-        android:paddingRight="@dimen/card_padding"
-        android:paddingStart="@dimen/card_padding" />
+        android:layout_height="match_parent"
+        >
+      <application.db.movie.com.moviedb.views.MyAutoScrollViewPager
+          android:id="@+id/viewPager"
+          android:layout_width="match_parent"
+          android:layout_height="330dp"
+          android:layout_gravity="top"
+          android:clipToPadding="false"
+          android:overScrollMode="never"
+          android:paddingEnd="@dimen/card_padding"
+          android:paddingLeft="@dimen/card_padding"
+          android:paddingRight="@dimen/card_padding"
+          android:paddingStart="@dimen/card_padding"
+          />
 
-</android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+
+  </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
 

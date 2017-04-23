@@ -8,7 +8,9 @@ package application.db.movie.com.moviedb.rest;
 
 public class AllApiUrls {
 
-    public static final String BASE_URL = "https://api.themoviedb.org/4/";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/";
+
+    public static final String BASE_URL_V4 = "https://api.themoviedb.org/4/";
 
     public static final String IMAGE_PATH = "https://image.tmdb.org/t/p/w780";
 

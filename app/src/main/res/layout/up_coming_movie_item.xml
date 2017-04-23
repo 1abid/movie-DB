@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
-        <tmdb.retrofit.bilai.vutka.com.moviecollections.views.SelectableRoundedImageView
+        <application.db.movie.com.moviedb.views.SelectableRoundedImageView
             android:id="@+id/movie_poster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -76,7 +76,9 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
 
     showUpdate(getActivityContext().getString(R.string.request_token));
 
-    TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
+    RestService.changeBaseURl(AllApiUrls.BASE_URL_V4);
+
+    TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class , AllApiUrls.AUTH_TOKEN);
 
     Call<RequestTokenResponse> call = apiInterface.createRequestToken(AllApiUrls.TMDB_API_KEY , AllApiUrls.AUTH_TOKEN ,AllApiUrls.AUTH_TOKEN);
 
@@ -110,7 +112,9 @@ public class SplashPresenter implements SplashMVP.ProvidedPresenterOps,SplashMVP
 
     showUpdate(getActivityContext().getString(R.string.create_access_token));
 
-    TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class);
+    RestService.changeBaseURl(AllApiUrls.BASE_URL_V4);
+
+    TMDBApiInterface apiInterface = RestService.createService(TMDBApiInterface.class , AllApiUrls.AUTH_TOKEN);
 
     AccessTokenResponse.RequestToken requestTokenBody = new AccessTokenResponse.RequestToken(requestToken);
 

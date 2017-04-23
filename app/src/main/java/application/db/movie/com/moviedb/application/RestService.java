@@ -17,22 +17,22 @@ public class RestService {
 
   private static Retrofit retrofit;
 
-  public static Retrofit retrofit(){
-    return  retrofit;
+  public static Retrofit retrofit() {
+    return retrofit;
   }
 
-
-  private static Retrofit.Builder builder = new Retrofit.Builder()
-      .baseUrl(baseUrl)
-      .addConverterFactory(GsonConverterFactory.create());
-
+  private static Retrofit.Builder builder =
+      new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create());
 
   private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+  public static <S> S createService(Class<S> serviceClass) {
+    return createService(serviceClass, null);
+  }
 
-  public static <S> S createService(Class<S> serviceClass){
+  public static <S> S createService(Class<S> serviceClass, String authHeader) {
 
-    httpClient.addInterceptor(new AuthenticationInterceptor(AllApiUrls.AUTH_TOKEN));
+    if (authHeader != null) httpClient.addInterceptor(new AuthenticationInterceptor(authHeader));
 
     /*HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -44,11 +44,9 @@ public class RestService {
     return retrofit.create(serviceClass);
   }
 
-
-  /**method to change base url for a api service**/
-  public void changeBaseURl(String url){
-    builder = new Retrofit.Builder()
-        .baseUrl(url)
-        .addConverterFactory(GsonConverterFactory.create());
+  /** method to change base url for a api service **/
+  public static void changeBaseURl(String url) {
+    builder =
+        new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create());
   }
 }
