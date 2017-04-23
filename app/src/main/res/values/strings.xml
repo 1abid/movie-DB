@@ -36,5 +36,6 @@
   <string name="approved_access_token_key" translatable="false">isApproved</string>
   <string name="request_token_key" translatable="false">tmdb_request_token</string>
   <string name="access_token_key" translatable="false">access_token</string>
+  <string name="menu_settings">settings</string>
 
 </resources>

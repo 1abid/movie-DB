@@ -9,7 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import application.db.movie.com.moviedb.AllMoviesFragment.AllMovieFragment;
+import application.db.movie.com.moviedb.AllMoviesFragment.view.AllMovieFragment;
 import application.db.movie.com.moviedb.R;
 import application.db.movie.com.moviedb.common.OnBackPressListener;
 import application.db.movie.com.moviedb.tabInterfaces.MovieFragment;
