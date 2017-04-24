@@ -15,6 +15,7 @@ import application.db.movie.com.moviedb.R;
 import application.db.movie.com.moviedb.allMoviesFragment.AllMovieMVP;
 import application.db.movie.com.moviedb.allMoviesFragment.model.AllMovieModel;
 import application.db.movie.com.moviedb.allMoviesFragment.presenter.AllMoviePresnter;
+import application.db.movie.com.moviedb.allMoviesFragment.presenter.ViewPagerPresenter;
 import application.db.movie.com.moviedb.common.ActivityFragmentStatemaintainer;
 import application.db.movie.com.moviedb.mainActivity.MainActivityMVP;
 import application.db.movie.com.moviedb.mainActivity.model.MainactivityModel;
@@ -49,6 +50,7 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
 
 
   private AllMovieMVP.ProvidedPresenterOps mPresenter ;
+  private AllMovieMVP.ProvidedViewPagerPresenterOps mViewpagerPresenter ;
 
   public static AllMovieFragment getInstance(TabOneFragment fragment) {
 
@@ -82,6 +84,8 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
 
     return view ;
   }
+
+
 
   @Override public String getName() {
     return "Movies";
@@ -127,6 +131,8 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
     //set presenter to model
     presenter.setModel(model);
 
+    ViewPagerPresenter viewPagerPresenter = new ViewPagerPresenter(view , model);
+
     //save presenter
     /**and model to {@link ActivityFragmentStatemaintainer}**/
     mStateMaintainer.put(AllMovieMVP.ProvidedPresenterOps.class.getSimpleName(), presenter);
@@ -135,6 +141,7 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
     //set the presenter as a interface
     //to limit communication with it
     mPresenter = presenter;
+    mViewpagerPresenter = viewPagerPresenter ;
   }
 
   /**
@@ -163,11 +170,13 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
     super.onStop();
 
     mPresenter.onConfigurationChanged(this);
+    mViewpagerPresenter.onConfigurationChanged(this);
   }
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
 
+    mPresenter.onDestroy(mainActivity.isChangingConfigurations());
     mPresenter.onDestroy(mainActivity.isChangingConfigurations());
   }
 }

@@ -35,7 +35,6 @@ public class AllMovieMVP {
     void onConfigurationChanged(AllMovieMVP.RequiredViewOps view);
     void setView(AllMovieMVP.RequiredViewOps view);
 
-
   }
 
   /**
@@ -43,6 +42,28 @@ public class AllMovieMVP {
    * to model (model -> presenter)
    */
   public interface RequiredPresenterOps{
+    Context getAppContext();
+    Context getActivityContext();
+  }
+
+  /**
+   * Required View methods available to Presenter.
+   * A passive layer, responsible to show data
+   * and receive user interactions
+   * (presenter -> view)
+   */
+  public interface ProvidedViewPagerPresenterOps{
+    void onDestroy(boolean isChangingConfigurations);
+    void onConfigurationChanged(AllMovieMVP.RequiredViewOps view);
+    void setView(AllMovieMVP.RequiredViewOps view);
+
+  }
+
+  /**
+   * required Presenter operation available
+   * to model (model -> presenter)
+   */
+  public interface RequiredViewpagerPresenterOps{
     Context getAppContext();
     Context getActivityContext();
   }
