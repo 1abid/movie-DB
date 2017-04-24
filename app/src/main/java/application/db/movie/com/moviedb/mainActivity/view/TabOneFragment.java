@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import application.db.movie.com.moviedb.R;
+import application.db.movie.com.moviedb.allMoviesFragment.view.AllMovieFragment;
 import application.db.movie.com.moviedb.common.OnBackPressListener;
-import application.db.movie.com.moviedb.fragments.AllMovieFragment;
 import application.db.movie.com.moviedb.tabInterfaces.MovieFragment;
 import java.util.ArrayList;
 
