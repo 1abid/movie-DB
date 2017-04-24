@@ -24,11 +24,5 @@
         activeColor="@color/icons"
         barColorWhenSelected="@color/color_nav_item_four"/>
 
-    <tab
-        id="@+id/menu_profile"
-        title="@string/menuProfile"
-        icon="@drawable/ic_user_3"
-        inActiveColor="@color/secondary_text"
-        activeColor="@color/icons"
-        barColorWhenSelected="@color/color_nav_item_four"/>
+
 </tabs>

@@ -17,8 +17,5 @@
         android:title="@string/menuSearch"
         android:icon="@drawable/ic_search_black" />
 
-    <item
-        android:id="@+id/menu_profile"
-        android:title="@string/menuProfile"
-        android:icon="@drawable/ic_user_3" />
+
 </menu>
