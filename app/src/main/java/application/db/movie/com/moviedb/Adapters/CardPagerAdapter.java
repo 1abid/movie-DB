@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import application.db.movie.com.moviedb.R;
+import application.db.movie.com.moviedb.allMoviesFragment.AllMovieMVP;
 import application.db.movie.com.moviedb.rest.AllApiUrls;
 import application.db.movie.com.moviedb.rest.upComingMoviesModel.MovieCardItem;
 import application.db.movie.com.moviedb.rest.upComingMoviesModel.UpcomingMovie;
@@ -28,48 +29,27 @@ import java.util.List;
 
 public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
-  private float mBaseElevation;
 
-  private List<CardView> mViews;
-  private List<MovieCardItem> mData;
 
-  private Context context;
+  private AllMovieMVP.ProvidedViewPagerPresenterOps mViewpagerPresnter;
 
-  public CardPagerAdapter(Context context) {
-    this.context = context;
+  public CardPagerAdapter(AllMovieMVP.ProvidedViewPagerPresenterOps pagerPresenterOps) {
 
-    mViews = new ArrayList<>();
-    mData = new ArrayList<>();
+    mViewpagerPresnter = pagerPresenterOps ;
   }
 
-  public void addCarditem(ArrayList<UpcomingMovie> movies) {
-    for (UpcomingMovie item : movies) {
-      MovieCardItem card;
-      String movieVote = String.valueOf(item.getVoteAvg());
-      String movieTitle = item.getMovieTitle();
-      String releaseDate = item.getReleaseDate();
-      String length = "128m";
-      String genere = "drama , action , romance , crime ";
-      String movieBackDropPath = item.getBackdropPath();
-      String moviePoster = item.getPosterPath();
 
-      card = new MovieCardItem(movieVote , movieTitle , releaseDate , length , genere , movieBackDropPath , moviePoster);
-
-      mViews.add(null);
-      mData.add(card);
-    }
-  }
 
   @Override public float getBaseElevation() {
-    return mBaseElevation;
+    return mViewpagerPresnter.getBaseElevation();
   }
 
   @Override public CardView getCardViewAt(int position) {
-    return mViews.get(position);
+    return mViewpagerPresnter.getCardViewAt(position);
   }
 
   @Override public int getCount() {
-    return mData==null ? 0 : mData.size();
+    return mViewpagerPresnter.getCount();
   }
 
   @Override public boolean isViewFromObject(View view, Object object) {
@@ -77,54 +57,12 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
   }
 
   @Override public Object instantiateItem(ViewGroup container, int position) {
-    View view = LayoutInflater.from(container.getContext())
-        .inflate(R.layout.up_coming_movie_item, container, false);
-    container.addView(view);
-    bind(mData.get(position), view);
-    CardView cardView = (CardView) view.findViewById(R.id.cardView);
-
-    if (mBaseElevation == 0) {
-      mBaseElevation = cardView.getCardElevation();
-    }
-
-    cardView.setMaxCardElevation(mBaseElevation * CardAdapter.MAX_ELEVATION_FACTOR);
-
-    mViews.set(position, cardView);
-    return view;
+    return mViewpagerPresnter.instantiateItem(container , position);
   }
 
   @Override public void destroyItem(ViewGroup container, int position, Object object) {
-    container.removeView((View) object);
-    mViews.set(position, null);
+    mViewpagerPresnter.destroyItem(container , position , object);
   }
 
-  private void bind(MovieCardItem item, View view) {
 
-    TextView movieVoteAvgTv = (TextView) view.findViewById(R.id.vote_avg_tv);
-    TextView movieTile = (TextView) view.findViewById(R.id.movie_title_tv);
-    TextView movieReleaseDateTv = (TextView) view.findViewById(R.id.release_tv);
-    TextView genereTv = (TextView) view.findViewById(R.id.movie_genere_tv);
-
-    SelectableRoundedImageView posterTv =
-        (SelectableRoundedImageView) view.findViewById(R.id.movie_poster);
-
-    movieVoteAvgTv.setText(item.getMovieAvg_vote());
-    movieTile.setText(item.getMovieName());
-    movieReleaseDateTv.setText(item.getMovieReleaseDate());
-    genereTv.setText(item.getMoviewGenere());
-
-    ViewTarget target = new ViewTarget<SelectableRoundedImageView, GlideDrawable>(posterTv) {
-
-      @Override public void onResourceReady(GlideDrawable resource,
-          GlideAnimation<? super GlideDrawable> glideAnimation) {
-        this.view.setImageDrawable(resource.getCurrent());
-      }
-    };
-
-    Glide.with(context)
-        .load(AllApiUrls.IMAGE_PATH + item.getMoviePosterPath())
-        .crossFade()
-        .fitCenter()
-        .into(target);
-  }
 }

@@ -1,6 +1,7 @@
 package application.db.movie.com.moviedb.allMoviesFragment.view;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -10,21 +11,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import application.db.movie.com.moviedb.Adapters.CardPagerAdapter;
 import application.db.movie.com.moviedb.R;
 import application.db.movie.com.moviedb.allMoviesFragment.AllMovieMVP;
 import application.db.movie.com.moviedb.allMoviesFragment.model.AllMovieModel;
 import application.db.movie.com.moviedb.allMoviesFragment.presenter.AllMoviePresnter;
 import application.db.movie.com.moviedb.allMoviesFragment.presenter.ViewPagerPresenter;
 import application.db.movie.com.moviedb.common.ActivityFragmentStatemaintainer;
-import application.db.movie.com.moviedb.mainActivity.MainActivityMVP;
-import application.db.movie.com.moviedb.mainActivity.model.MainactivityModel;
-import application.db.movie.com.moviedb.mainActivity.presenter.MainActivityPresenter;
 import application.db.movie.com.moviedb.mainActivity.view.MainActivity;
 import application.db.movie.com.moviedb.mainActivity.view.TabOneFragment;
 import application.db.movie.com.moviedb.tabInterfaces.MovieFragment;
 import application.db.movie.com.moviedb.views.MyAutoScrollViewPager;
-import application.db.movie.com.moviedb.views.ShadowTransformer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -52,6 +48,9 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
   private AllMovieMVP.ProvidedPresenterOps mPresenter ;
   private AllMovieMVP.ProvidedViewPagerPresenterOps mViewpagerPresenter ;
 
+  private View rootView ;
+
+  private ProgressDialog progressDialog;
   public static AllMovieFragment getInstance(TabOneFragment fragment) {
 
     if (instance == null) {
@@ -76,16 +75,22 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
 
     setUpMvp();
 
-    View view = inflater.inflate(R.layout.all_movies_layout, null);
+    rootView = inflater.inflate(R.layout.all_movies_layout, null);
 
-    unbinder = ButterKnife.bind(this, view);
+    unbinder = ButterKnife.bind(this, rootView);
 
     mainActivity.getSupportActionBar().setTitle(getName());
 
-    return view ;
+    createPDialog();
+
+    return rootView ;
   }
 
+  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
+    mViewpagerPresenter.loadUpcomingMovies();
+  }
 
   @Override public String getName() {
     return "Movies";
@@ -97,6 +102,30 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
 
   @Override public Context getActivityContext() {
     return mainActivity.getActivityContext();
+  }
+
+  @Override public View getView(int id) {
+    return rootView.findViewById(id);
+  }
+
+  @Override public void showPDialog() {
+    if(progressDialog != null)
+      progressDialog.show();
+  }
+
+  @Override public void hidePDialog() {
+    if(progressDialog.isShowing()){
+      progressDialog.hide();
+    }
+  }
+
+  private void createPDialog(){
+    progressDialog = new ProgressDialog(mainActivity , R.style.AppTheme_Dark_Dialog);
+
+    progressDialog.setMessage(getActivityContext().getString(R.string.loading));
+    progressDialog.setIndeterminate(true);
+    progressDialog.setCancelable(false);
+
   }
 
   @TargetApi(Build.VERSION_CODES.KITKAT) private void setUpMvp() {
@@ -133,10 +162,13 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
 
     ViewPagerPresenter viewPagerPresenter = new ViewPagerPresenter(view , model);
 
+    model.setmViewPagerPrenter(viewPagerPresenter);
+
     //save presenter
     /**and model to {@link ActivityFragmentStatemaintainer}**/
     mStateMaintainer.put(AllMovieMVP.ProvidedPresenterOps.class.getSimpleName(), presenter);
     mStateMaintainer.put(AllMovieMVP.ProvidedModelOps.class.getSimpleName(), model);
+    mStateMaintainer.put(AllMovieMVP.ProvidedViewPagerPresenterOps.class.getSimpleName() , viewPagerPresenter);
 
     //set the presenter as a interface
     //to limit communication with it
@@ -152,11 +184,13 @@ public class AllMovieFragment extends MovieFragment implements AllMovieMVP.Requi
       throws java.lang.InstantiationException, IllegalAccessException {
 
     mPresenter = mStateMaintainer.get(AllMovieMVP.ProvidedPresenterOps.class.getSimpleName());
+    mViewpagerPresenter = mStateMaintainer.get(AllMovieMVP.ProvidedViewPagerPresenterOps.class.getSimpleName());
 
     if (mPresenter == null) {
       initilize(view);
     } else {
       mPresenter.onConfigurationChanged(this);
+      mViewpagerPresenter.onConfigurationChanged(this);
     }
   }
 

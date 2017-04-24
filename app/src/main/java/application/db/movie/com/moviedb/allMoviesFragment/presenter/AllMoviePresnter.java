@@ -46,6 +46,8 @@ public class AllMoviePresnter implements AllMovieMVP.ProvidedPresenterOps , AllM
     this.mView = new WeakReference<AllMovieMVP.RequiredViewOps>(view);
   }
 
+
+
   @Override public Context getAppContext() {
     try {
 

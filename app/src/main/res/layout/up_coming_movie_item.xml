@@ -39,83 +39,37 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:padding="5dp"
-                android:text="La La land"
                 android:textSize="12sp"
-                android:textColor="@color/primary_light"
+                android:textColor="@color/icons"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/release_tv_ic"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_event" />
-
-                    <TextView
-                        android:id="@+id/release_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_toRightOf="@+id/release_tv_ic"
-                        android:padding="5dp"
-                        android:text="2017-02-01"
-                        android:textSize="11sp"
-                        android:textColor="@color/primary_light" />
-                </RelativeLayout>
-
-                <!--<RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/total_time_tv_ic"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_access_time" />
-
-                    <TextView
-                        android:id="@+id/total_time_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_toRightOf="@+id/total_time_tv_ic"
-                        android:padding="5dp"
-                        android:text="127m"
-                        android:textSize="11sp"
-                        android:textColor="@color/primary_light" />
-                </RelativeLayout>-->
-
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/movie_genere_tv"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:layout_toRightOf="@+id/total_time_tv_ic"
-                android:padding="3dp"
-                android:text="romance , drama"
-                android:textSize="11sp"
-                android:textColor="@color/primary_light" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/release_tv_ic"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_event" />
+
+                <TextView
+                    android:id="@+id/release_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/release_tv_ic"
+                    android:padding="5dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/icons" />
+            </RelativeLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -137,9 +91,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:text="9.8"
                 android:textSize="14sp"
-                android:textColor="@color/primary_light" />
+                android:textColor="@color/icons" />
 
         </LinearLayout>
 

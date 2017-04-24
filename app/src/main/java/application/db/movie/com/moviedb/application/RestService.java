@@ -3,6 +3,7 @@ package application.db.movie.com.moviedb.application;
 import application.db.movie.com.moviedb.rest.AllApiUrls;
 import application.db.movie.com.moviedb.rest.AuthenticationInterceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -34,9 +35,9 @@ public class RestService {
 
     if (authHeader != null) httpClient.addInterceptor(new AuthenticationInterceptor(authHeader));
 
-    /*HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-    httpClient.interceptors().add(loggingInterceptor);*/
+    httpClient.interceptors().add(loggingInterceptor);
 
     builder.client(httpClient.build());
     Retrofit retrofit = builder.build();

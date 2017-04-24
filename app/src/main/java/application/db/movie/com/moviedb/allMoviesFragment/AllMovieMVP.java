@@ -1,8 +1,14 @@
 package application.db.movie.com.moviedb.allMoviesFragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.view.ViewGroup;
 import application.db.movie.com.moviedb.mainActivity.MainActivityMVP;
+import application.db.movie.com.moviedb.rest.upComingMoviesModel.UpcomingMovie;
+import java.util.ArrayList;
 
 /**
  * Created by VutkaBilai on 4/24/17.
@@ -20,6 +26,10 @@ public class AllMovieMVP {
 
     Context getAppContext();
     Context getActivityContext();
+    View getView(int id);
+
+    void showPDialog();
+    void hidePDialog();
 
   }
 
@@ -31,6 +41,7 @@ public class AllMovieMVP {
    * (presenter -> view)
    */
   public interface ProvidedPresenterOps{
+
     void onDestroy(boolean isChangingConfigurations);
     void onConfigurationChanged(AllMovieMVP.RequiredViewOps view);
     void setView(AllMovieMVP.RequiredViewOps view);
@@ -57,6 +68,16 @@ public class AllMovieMVP {
     void onConfigurationChanged(AllMovieMVP.RequiredViewOps view);
     void setView(AllMovieMVP.RequiredViewOps view);
 
+    void loadUpcomingMovies();
+
+    float getBaseElevation();
+    CardView getCardViewAt(int position);
+    int getCount();
+
+
+    boolean isViewFromObject(View view, Object object);
+    Object instantiateItem(ViewGroup container, int position);
+    void destroyItem(ViewGroup container, int position, Object object);
   }
 
   /**
@@ -66,6 +87,8 @@ public class AllMovieMVP {
   public interface RequiredViewpagerPresenterOps{
     Context getAppContext();
     Context getActivityContext();
+
+    void showUpcomingMoviesSlider(ArrayList<UpcomingMovie> movies);
   }
 
   /**
@@ -77,5 +100,7 @@ public class AllMovieMVP {
   public interface ProvidedModelOps {
 
     void onDestroy(boolean isConfigurationChanging);
+
+    void loadUpComingMovies();
   }
 }

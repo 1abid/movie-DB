@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityMVP.R
   }
 
   @Override public Context getActivityContext() {
-    return this;
+    return MainActivity.this;
   }
 
   @Override public void setSelectedTab(Fragment fragment) {
